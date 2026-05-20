@@ -102,8 +102,8 @@ let currentPage = 'home';
         document.head.appendChild(style);
 
         // Form submission handling
-        document.querySelector('form').addEventListener('submit', function(e) {
-           // e.preventDefault();
+      /*  document.querySelector('form').addEventListener('submit', function(e) {
+           e.preventDefault();
             
             // Create success message
             const successMsg = document.createElement('div');
@@ -131,7 +131,58 @@ let currentPage = 'home';
             
             // Reset form
             this.reset();
-        });
+        });*/
+        document.querySelector('form').addEventListener('submit', async function(e) {
+
+    e.preventDefault();
+
+    const form = this;
+    const formData = new FormData(form);
+
+    const response = await fetch(form.action, {
+        method: "POST",
+        body: formData,
+        headers: {
+            'Accept': 'application/json'
+        }
+    });
+
+    if (response.ok) {
+
+        // Create success message
+        const successMsg = document.createElement('div');
+
+        successMsg.style.cssText = `
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: rgba(46, 204, 113, 0.9);
+            color: white;
+            padding: 20px 40px;
+            border-radius: 10px;
+            backdrop-filter: blur(20px);
+            z-index: 10000;
+            animation: fadeIn 0.3s ease;
+        `;
+
+        successMsg.textContent =
+            'Message sent successfully! We\'ll get back to you soon.';
+
+        document.body.appendChild(successMsg);
+
+        // Remove message after 3 seconds
+        setTimeout(() => {
+            successMsg.remove();
+        }, 3000);
+
+        // Reset form AFTER successful submission
+        form.reset();
+
+    } else {
+        alert("Failed to send message.");
+    }
+});
 
         // Add fade in animation
         const fadeStyle = document.createElement('style');
