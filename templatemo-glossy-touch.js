@@ -121,17 +121,14 @@ let currentPage = 'home';
                 animation: fadeIn 0.3s ease;
             `;
             successMsg.textContent = 'Message sent successfully! We\'ll get back to you soon.';
-            
             document.body.appendChild(successMsg);
-            
-            // Remove message after 3 seconds
             setTimeout(() => {
                 successMsg.remove();
             }, 3000);
+            setTimeout(() => {
+                this.reset();
+            }, 2000);
             
-            // Reset form
-            this.reset();
-        });
 
         // Add fade in animation
         const fadeStyle = document.createElement('style');
