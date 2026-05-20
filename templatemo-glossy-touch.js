@@ -103,7 +103,7 @@ let currentPage = 'home';
 
         // Form submission handling
         document.querySelector('form').addEventListener('submit', function(e) {
-            e.preventDefault();
+           // e.preventDefault();
             
             // Create success message
             const successMsg = document.createElement('div');
