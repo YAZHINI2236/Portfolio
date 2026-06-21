@@ -419,11 +419,14 @@ button[type="submit"] {
 /* Services page styles */
 .services-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    grid-template-columns: repeat(2, 1fr);
     gap: 30px;
-    margin-bottom: 40px;
+}
+.service-card p {
+    text-align: justify;
 }
 .service-card {
+    text-align: justify;
     padding: 40px 30px;
     color: white;
     text-align: left;
